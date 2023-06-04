@@ -22,7 +22,7 @@ public class WeaponStore {
             if (hero.getHero_money() < 120)
                 System.out.println("not enough money");
             else {
-                System.out.printf("hp : %d(+%d)\n", hero.getHero_power(), 55);
+                System.out.printf("power : %d(+%d)\n", hero.getHero_power(), 55);
                 hero.gainPower(55);
                 hero.loseMoney(120);
             }
@@ -30,7 +30,7 @@ public class WeaponStore {
             if (hero.getHero_money() < 110)
                 System.out.println("not enough money");
             else {
-                System.out.printf("hp : %d(+%d)\n", hero.getHero_defense(), 50);
+                System.out.printf("defense : %d(+%d)\n", hero.getHero_defense(), 50);
                 hero.gainDefense(50);
                 hero.loseMoney(110);
             }

@@ -29,7 +29,7 @@ public class PotionStore {
             if (hero.getHero_money() < 25)
                 System.out.println("not enough money");
             else {
-                System.out.printf("hp : %d(+%d)\n", hero.getHero_mp(), 25);
+                System.out.printf("mp : %d(+%d)\n", hero.getHero_mp(), 25);
                 hero.gainMp(25);
                 hero.loseMoney(25);
             }
