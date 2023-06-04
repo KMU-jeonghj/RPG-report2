@@ -5,12 +5,16 @@ import java.util.Scanner;
 public class Hero {
 
     protected String hero_name;
-    protected int hero_level, hero_power, hero_hp, hero_defense, hero_mp, hero_experience, hero_money;
+    protected int hero_level, hero_power, hero_hp, fullHp, fullMp, hero_defense, hero_mp, hero_experience, hero_money;
 
 
     //생성자
     public Hero(String hero_name) {
         this.hero_name = hero_name;
+        this.hero_level = 1;
+        this.hero_experience = 0;
+        this. hero_money = 0;
+        this.fullMp = this.hero_mp = 100;
     }
 
 
@@ -46,6 +50,65 @@ public class Hero {
     public void setHero_money(int hero_money) {
         this.hero_money = hero_money;
     }
+
+    public void setFullHp(int fullHp) {
+        this.fullHp = fullHp;
+    }
+
+    public void setFullMp(int fullMp) {
+        this.fullMp = fullMp;
+    }
+
+    public void loseMp(int mp) {
+        this.hero_mp -= mp;
+        if (this.hero_mp < 0)
+            this.hero_mp = 0;
+    }
+
+    public void gainMp(int mp) {
+        this.hero_mp += mp;
+        if (this.hero_mp > fullMp) {
+            this.hero_mp = this.fullMp;
+        }
+    }
+
+    public void loseHp(int hp) {
+        this.hero_hp -= hp;
+        if (this.hero_hp < 0) {
+            this.hero_hp = 0;
+        }
+    }
+
+    public void gainHp(int hp) {
+        this.hero_hp += hp;
+        if (this.hero_hp > fullHp) {
+            this.hero_hp = this.fullHp;
+        }
+    }
+
+    public void gainMoney(int hero_money) {
+        this.hero_money += hero_money;
+    }
+
+    public void loseMoney(int hero_money) {
+        this.hero_money -= hero_money;
+        if (this.hero_money < 0) {
+            this.hero_money = 0;
+        }
+    }
+
+    public void gainPower(int hero_power) {
+        this.hero_power += hero_power;
+    }
+
+    public void gainDefense(int hero_defense) {
+        this.hero_defense += hero_defense;
+    }
+
+    public void gainExp(int exp) {
+        this.hero_experience += exp;
+    }
+
     //-------------------------------------------
 
     //접근자
@@ -61,6 +124,13 @@ public class Hero {
 
     public int getHero_hp() {
         return hero_hp;
+    }
+
+    public int getFullMp() {
+        return fullMp;
+    }
+    public int getFullHp() {
+        return fullHp;
     }
 
     public int getHero_power() {
@@ -112,9 +182,30 @@ public class Hero {
         }
     }
 
-    public int skill() {
-        return 0;
+    public void levelUP() {
+        if (hero_experience >= hero_level * 80) {
+            hero_level += 1;
+            System.out.println(hero_name + "의 레벨이" + hero_level + "이 되었습니다.");
+            hero_money += hero_level * 50;
+            System.out.println("레밸업 기념으로 돈이 " + hero_level * 50 + "원 증가하여 ");
+            System.out.println(hero_money + "원이 되었습니다.");
+            hero_experience = 0;
+        }
     }
+
+    public void showStatus() {
+        System.out.println("*********************");
+        System.out.println("현재  Hero 의 이름 : " + hero_name);
+        System.out.println("현재 " + hero_name + "의 레벨 : " + hero_level);
+        System.out.println("현재 " + hero_name + "의 힘 : " + hero_power);
+        System.out.println("현재 " + hero_name + "의 방어력 : " + hero_defense);
+        System.out.println("현재 " + hero_name + "의 HP : " + hero_hp);
+        System.out.println("현재 " + hero_name + "의 MP : " + hero_mp);
+        System.out.println("현재 " + hero_name + "의 경험치 : " + hero_experience);
+        System.out.println("현재 " + hero_name + "의 돈 : " + hero_money + "원");
+        System.out.println("*********************");
+    }
+
 
 
 
